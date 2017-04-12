@@ -1,10 +1,14 @@
 # 速度是特性
 
-最近几年里，网络性能优化（WPO）的出现和快速增长，表现出用户对于响应快速的用户体验的需求。这不仅仅是简单是加速连接世界带来的 “我们需要速度” 的心理作用
+最近几年里，网络性能优化（WPO）的出现和快速增长，表现出用户对于响应快速的用户体验的需求。这不仅仅是简单是加速连接世界带来的 “我们需要速度” 的心理作用，而是由实际经验显示出的需求。这些经验来自于对许多在线业务的底线性能的衡量。
+
+* 更快的网站带来更高的用户参与度
+* 更快的网站带来更高的用户留存
+* 更快的网站带来更高的用户转换率
 
 ##  {#speed-is-a-feature}
 
-## The emergence and the fast growth of the web performance optimization \(WPO\) industry within the past few years is a telltale sign of the growing importance and demand for speed and faster user experiences by the users. And this is not simply a psychological_need for speed_in our ever accelerating and connected world, but a requirement driven by empirical results, as measured with respect to the bottom-line performance of the many online businesses: {#speed-is-a-feature}
+## The emergence and the fast growth of the web performance optimization \(WPO\) industry within the past few years is a telltale sign of the growing importance and demand for speed and faster user experiences by the users. And this is not simply a psychological\_need for speed\_in our ever accelerating and connected world, but a requirement driven by empirical results, as measured with respect to the bottom-line performance of the many online businesses: {#speed-is-a-feature}
 
 * Faster sites lead to better user engagement.
 
