@@ -32,45 +32,9 @@ _图1-1 延迟和带宽_
 
 # 延迟的许多组成部分
 
-延迟指的是消息或者数据包从
-
-
-
-
-
-
-
-
+延迟指的是消息或者数据包从源点到目的点的时间
 
 Latency is the time it takes for a message, or a packet, to travel from its point of origin to the point of destination. That is a simple and useful definition, but it often hides a lot of useful information — every system contains multiple sources, or components, contributing to the overall time it takes for a message to be delivered, and it is important to understand what these components are and what dictates their performance.
 
 Let’s take a closer look at some common contributing components for a typical router on the Internet, which is responsible for relaying a message between the client and the server:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
