@@ -36,9 +36,9 @@ _图1-1 延迟和带宽_
 
 让我们更仔细的了解一下在典型的互联网线路中常见的组成部分，了解它们在信息传递中的责任。
 
-Let’s take a closer look at some common contributing components for a typical router on the Internet, which is responsible for relaying a message between the client and the server:
+_传播延迟_
 
-Propagation delay
+由于在发送者到接受者存在距离，信号在这两者之间传递需要花费一定的时间之间。
 
 Amount of time required for a message to travel from the sender to receiver, which is a function of distance over speed with which the signal propagates.
 
