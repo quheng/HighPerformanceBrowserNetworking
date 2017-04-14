@@ -42,7 +42,7 @@ _传播延迟_
 
 _传播延迟_
 
-
+将数据包中的所有比特放进线路中所需要的时间，这部分时间由数据包的长度和线路的数据速率决定。
 
 Amount of time required to push all the packet’s bits into the link, which is a function of the packet’s length and data rate of the link.
 
