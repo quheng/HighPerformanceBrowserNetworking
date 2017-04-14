@@ -38,15 +38,21 @@ Latency is the time it takes for a message, or a packet, to travel from its poin
 
 Let’s take a closer look at some common contributing components for a typical router on the Internet, which is responsible for relaying a message between the client and the server:
 
+Propagation delay
 
+Amount of time required for a message to travel from the sender to receiver, which is a function of distance over speed with which the signal propagates.
 
+Transmission delay
 
+Amount of time required to push all the packet’s bits into the link, which is a function of the packet’s length and data rate of the link.
 
+Processing delay
 
+Amount of time required to process the packet header, check for bit-level errors, and determine the packet’s destination.
 
+Queuing delay
 
+Amount of time the packet is waiting in the queue until it can be processed.
 
-
-
-
+The total latency between the client and the server is the sum of all the delays just listed. Propagation time is dictated by the distance and the medium through which the signal travels — as we will see, the propagation speed is usually within a small constant factor of the speed of light. On the other hand, transmission delay is dictated by the available data rate of the transmitting link and has nothing to do with the distance between the client and the server. As an example, let’s assume we want to transmit a 10 Mb file over two links: 1 Mbps and 100 Mbps. It will take 10 seconds to put the entire file "on the wire" over the 1 Mbps link and only 0.1 seconds over the 100 Mbps link.
 
