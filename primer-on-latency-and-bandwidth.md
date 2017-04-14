@@ -38,11 +38,11 @@ _图1-1 延迟和带宽_
 
 _传播延迟_
 
-由于在发送者到接受者存在距离，信号在这两者之间传递需要花费一定的时间之间。
+信息在发送者和接受者之间传播所需要的时间，这部分时间由距离和信号传递的速度决定。
 
-Amount of time required for a message to travel from the sender to receiver, which is a function of distance over speed with which the signal propagates.
+_传播延迟_
 
-Transmission delay
+
 
 Amount of time required to push all the packet’s bits into the link, which is a function of the packet’s length and data rate of the link.
 
