@@ -44,15 +44,19 @@ _传播延迟_
 
 将数据包中的所有比特放进线路中所需要的时间，这部分时间由数据包的长度和线路的数据速率决定。
 
-Amount of time required to push all the packet’s bits into the link, which is a function of the packet’s length and data rate of the link.
+_处理延迟_
 
-Processing delay
+处理数据包包头所需要的时间，用于检查比特级别的错误并且确定数据包的目的地。
 
-Amount of time required to process the packet header, check for bit-level errors, and determine the packet’s destination.
+_查询延迟_
 
-Queuing delay
-
-Amount of time the packet is waiting in the queue until it can be processed.
+数据包在队列中等待处理的时间。
 
 The total latency between the client and the server is the sum of all the delays just listed. Propagation time is dictated by the distance and the medium through which the signal travels — as we will see, the propagation speed is usually within a small constant factor of the speed of light. On the other hand, transmission delay is dictated by the available data rate of the transmitting link and has nothing to do with the distance between the client and the server. As an example, let’s assume we want to transmit a 10 Mb file over two links: 1 Mbps and 100 Mbps. It will take 10 seconds to put the entire file "on the wire" over the 1 Mbps link and only 0.1 seconds over the 100 Mbps link.
+
+note
+
+Network data rates are typically measured in bits per second \(bps\), whereas data rates for non-network equipment are typically shown in bytes per second \(Bps\). This is a common source of confusion, pay close attention to the units.
+
+For example, to put a 10 megabyte \(MB\) file "on the wire" over a 1Mbps link, we will need 80 seconds. 10MB is equal to 80Mb because there are 8 bits for every byte!
 
