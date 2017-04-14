@@ -32,7 +32,7 @@ _图1-1 延迟和带宽_
 
 # 延迟的许多组成部分
 
-延迟指的是消息或者数据包从源点到目的点的时间。这是一个简单又有用的定义，但是它隐藏了很多有用的信息。
+延迟指的是消息或者数据包从源点到目的点的时间。这是一个简单又有用的定义，但是它隐藏了很多有用的信息。每一个系统都包含了很多的源或者组成部分，这些都在传递信息的过程中占用了一定的时间，理解哪些部分占用了时间对于描述系统性能是十分关键的。
 
 Latency is the time it takes for a message, or a packet, to travel from its point of origin to the point of destination. That is a simple and useful definition, but it often hides a lot of useful information — every system contains multiple sources, or components, contributing to the overall time it takes for a message to be delivered, and it is important to understand what these components are and what dictates their performance.
 
