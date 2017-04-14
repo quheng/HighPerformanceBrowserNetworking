@@ -40,7 +40,7 @@ _传播延迟_
 
 信息在发送者和接受者之间传播所需要的时间，这部分时间由距离和信号传递的速度决定。
 
-_传播延迟_
+_发送延迟_
 
 将数据包中的所有比特放进线路中所需要的时间，这部分时间由数据包的长度和线路的数据速率决定。
 
@@ -52,21 +52,5 @@ _查询延迟_
 
 数据包在队列中等待处理的时间。
 
-客户端和服务器之间的总延迟由上述延迟组合而成。传播时间由距离和信号传播的介质觉得，正如我们看到的那样，传播速度通常是光速和一些其他很小的因素。
-
-
-
-The total latency between the client and the server is the sum of all the delays just listed. Propagation time is dictated by the distance and the medium through which the signal travels — as we will see, the propagation speed is usually within a small constant factor of the speed of light. On the other hand, transmission delay is dictated by the available data rate of the transmitting link and has nothing to do with the distance between the client and the server. As an example, let’s assume we want to transmit a 10 Mb file over two links: 1 Mbps and 100 Mbps. It will take 10 seconds to put the entire file "on the wire" over the 1 Mbps link and only 0.1 seconds over the 100 Mbps link.
-
-note
-
-Network data rates are typically measured in bits per second \(bps\), whereas data rates for non-network equipment are typically shown in bytes per second \(Bps\). This is a common source of confusion, pay close attention to the units.
-
-For example, to put a 10 megabyte \(MB\) file "on the wire" over a 1Mbps link, we will need 80 seconds. 10MB is equal to 80Mb because there are 8 bits for every byte!
-
-
-
-Next, once the packet arrives at the router, the router must examine the packet header to determine the outgoing route and may run other checks on the data — this takes time as well. Much of this logic is now often done in hardware, so the delays are very small, but they do exist. And, finally, if the packets are arriving at a faster rate than the router is capable of processing, then the packets are queued inside an incoming buffer. The time data spends queued inside the buffer is, not surprisingly, known as queuing delay.
-
-Each packet traveling over the network will incur many instances of each of these delays. The farther the distance between the source and destination, the more time it will take to propagate. The more intermediate routers we encounter along the way, the higher the processing and transmission delays for each packet. Finally, the higher the load of traffic along the path, the higher the likelihood of our packet being queued and delayed inside one or more buffers.
+客户端和服务器之间的总延迟由上述延迟组合而成。传播时间由距离和信号传播的介质觉得，正如我们看到的那样，传播速度通常是光速和一些其他很小的因素。另一方面，发送延迟由可用的传输线路的数据速率决定，和客户端到服务器的距离无关。举例来说，我们假设在 1 Mbps 和 100 Mbps 这两种线路中传送一个 10 Mb 的文件。在 1 Mbps 的线路中会花费 10 秒， 而在 100 Mbps 的线路中只需要 0.1 秒。
 
