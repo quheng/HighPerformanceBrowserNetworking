@@ -112,4 +112,4 @@ cwnd 不会在发送方和接收方之间相互通知或交换，在这种情况
 
 相反，我们从一个很小的拥塞窗口开始，每一个数据来回使这个窗口大小加倍(指数增长)。结论是达到一个特定的吞吐量是一个关于初始拥塞窗口大小和客户端-服务器端之间往返时间的函数。
 
-$$Time=RTT*\lfloor log_2(\frac{N}{initial cwnd}) \rfloor$$
+$$Time=RTT*\lcelling log_2(\frac{N}{initial cwnd}) \rcelling$$
