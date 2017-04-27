@@ -130,7 +130,7 @@ $$Time=RTT*\lceil log_2(\frac{N}{initial cwnd}) \rceil$$
 不需要考虑 64 KB 的接受窗口大小，新建立的 TCP 连接受限于拥塞窗口的大小。实际上，达到 64 KB 的接受窗口限制，我们需要先将滑动窗口大小增加到 45 个数据段，这会占用 大概 168 ms。
 
 $$\frac{65,535 bytes}{1,460 bytes} \approx 45 segments$$  
-$$56 ms * \lceil log_2\frac{45}{10} \rceil  = 168$$
+$$56 ms * \lceil log_2\frac{45}{10} \rceil  = 168 ms$$
 
 如图 2-4 所示，达到 64 KB 的吞吐量需要客户端和服务器端之间三个来回！实际上由于慢启动的因素，客户端和服务器端之间可能存在的数 Mbps 的容量对一个新的连接建立没有任何用处。
 
