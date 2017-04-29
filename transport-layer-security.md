@@ -53,3 +53,8 @@ TLS 协议设计用来为应用提供三个基本服务加密，身份验证和�
 
 *HTTPS 提供了网络中强大的特性* 诸如获取用户地理位置，照相，录像等等一系列新的网络平台特性提高了离线应用的体验，这需要用户显式的开启它们，也需要 HTTPS。HTTPS 提供的安全和完整性是传递用户许可的关键组成部分。
 
+国际互联网工程任务组(IETF)和国际互联网架构委员会(IAB)为开发者和协议制定中提供了指南来鼓励使用 HTTPS：
+
+1. IETF: [大量的监视是一种攻击](https://tools.ietf.org/html/rfc7258)
+2. IAB: [互联网保密声明](https://www.iab.org/2014/11/14/iab-statement-on-internet-confidentiality/)
+
