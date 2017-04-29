@@ -63,8 +63,11 @@ TLS 协议设计用来为应用提供三个基本服务加密，身份验证和�
 **note**
 > 美国政府管理预算局发布的 [只使用 HTTPS 标准](https://https.cio.gov/) 是一个不错的 HTTPS 额外信息和一个部署 HTTPS 的实际的例子。
 
-> **一起加密**
+> **Let’s Encrypt **
 > 
-> 对于部署 HTTPS 一个常见的阻碍是需要从受信任的权威机构购买证书，[信任链与授权证书](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。 2015 年发起的[一起加密](https://letsencrypt.org/)项目旨在解决这一特定问题
+> 对于部署 HTTPS 一个常见的阻碍是需要从受信任的权威机构购买证书，[信任链与授权证书](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。 2015 年发起的[Let’s Encrypt ](https://letsencrypt.org/)项目旨在解决这一特定问题
 >
-> “ 
+> “ Let’s Encrypt 是由互联网安全研究小组提供的免费，自动的开放证书管理机构。Let’s Encrypt 和 ACME 协议是的搭建 HTTPS 服务器和自动获取浏览器信任的证书成为了可能呢。
+>
+>访问项目主页，了解一下如何在你自己的站点中使用它。没有限制，每一个人都可以为它们的站点获取一个免费的授信证书。
+
