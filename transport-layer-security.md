@@ -126,4 +126,5 @@ RSA 握手运转良好，但是它有一个重要的缺点：用于认证服务�
 >
 > 需要注意，两个测试的单位不是可以直接比较的，Elliptic Curve Diffie-Hellman (ECDH) 测试提供了每种不同密钥大小所需时间的汇总表，而 AES 的结果通过每秒处理的比特数来衡量。无论如何，ECDH 操作明显更加耗时。
 >
->
+> 具体的性能数据取决于硬件，核心数量，TLS 版本，服务器配置和其他因素。不要迷信老旧的性能数据！在你机子的硬件上运行测试，在[降低计算花费](https://hpbn.co/transport-layer-security-tls/#reduce-computational-costs)中获取更多的信息。
+
