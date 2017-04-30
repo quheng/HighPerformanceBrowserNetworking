@@ -96,4 +96,5 @@ TLS 协议设计用来为应用提供三个基本服务加密，身份验证和�
 在上述解释中，一个新的 TLS 连接的建立中一个完整的握手需要两个来回，这是一个坏消息。然而实际情况中，我们可以做到更好，只需要一个来回。
 
 1. False Start 是 TLS 协议的扩展，它允许客户端和服务器在只完成一部分握手的情况下创术加密过的数据。例如，一旦 **ChangeCipherSpec** 和 **Finished** 信息送达，但是不需要另一方做同样的事情。这个优化将新的 TLS 连接开销降低到 1 个来回，查看 [开启 TLS False Start](https://hpbn.co/transport-layer-security-tls/#enable-tls-false-start)
+2. 如果你已客户端之前和服务器有过通信，可以使用“简化握手”，这需要一个往返，并且通过重用之前为安全会话达成一致的参数降低了客户端和服务器的 CPU 消耗，查看[TLS 会话恢复](https://hpbn.co/transport-layer-security-tls/#tls-session-resumption)
 
