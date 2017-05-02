@@ -29,7 +29,7 @@ TLS 协议设计用来为应用提供三个基本服务加密，身份验证和�
 
 为了建立一个加密的安全数据通道，连接的双方必须在后续使用的加密算法以及加密数据的密钥上达成一致。TLS 协议制定了定义明确的握手序列来完成进行这些数据交换，我们将在之后的 [TLS 握手](https://hpbn.co/transport-layer-security-tls/#tls-handshake) 中讨论它的细节。TLS 在实际中运转良好的一个原因是它使用了公钥加密算法（又被称作对称密钥算法）的巧妙的握手过程，它使得连接双方可以在彼此没有了解的情况下通过一个非加密的信道完成私钥分享。
 
-作为 TLS 握手的一部分，这个协议允许双方检验身份。在浏览器中使用的时候，校验机制允许客户端验证服务器是不是它宣称的身份（例如你的银行）而伪装的名称或者 IP 地址。这个验证过程基于建立好的信任链，查看[信任链与授权证书](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。另外，服务器也可以选择验证客户端的身份，例如公司代理服务器可以校验所有的雇员，每一个雇员都应该有公司签发的唯一证书。
+作为 TLS 握手的一部分，这个协议允许双方检验身份。在浏览器中使用的时候，校验机制允许客户端验证服务器是不是它宣称的身份（例如你的银行）而伪装的名称或者 IP 地址。这个验证过程基于建立好的信任链，查看[信任链与证书颁发机构](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。另外，服务器也可以选择验证客户端的身份，例如公司代理服务器可以校验所有的雇员，每一个雇员都应该有公司签发的唯一证书。
 
 最终，在有了加密和身份认证后，TLS 协议还提供了消息分片机制，为每一个信息加上了信息认证码（MAC）。MAC 算法是一种单向加密哈希函数，它的密钥由连接的两端协商完成。无论一个何时一个 TLS 记录发送的时候都会生成一个 MAC 值并附加在信息中，接收方可以通过计算并验证 MAC 的值来确保信息的完整性和真实性。
 
@@ -65,7 +65,7 @@ TLS 协议设计用来为应用提供三个基本服务加密，身份验证和�
 
 > **Let’s Encrypt **
 > 
-> 对于部署 HTTPS 一个常见的阻碍是需要从受信任的权威机构购买证书，[信任链与授权证书](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。 2015 年发起的[Let’s Encrypt ](https://letsencrypt.org/)项目旨在解决这一特定问题
+> 对于部署 HTTPS 一个常见的阻碍是需要从受信任的权威机构购买证书，[信任链与证书颁发机构](https://hpbn.co/transport-layer-security-tls/#chain-of-trust-and-certificate-authorities)。 2015 年发起的[Let’s Encrypt ](https://letsencrypt.org/)项目旨在解决这一特定问题
 >
 > “ Let’s Encrypt 是由互联网安全研究小组提供的免费，自动的开放证书管理机构。Let’s Encrypt 和 ACME 协议是的搭建 HTTPS 服务器和自动获取浏览器信任的证书成为了可能呢。
 >
@@ -193,3 +193,4 @@ RSA 握手运转良好，但是它有一个重要的缺点：用于认证服务�
 **note**
 > 实际中，在负载均衡服务器组中部署会话票据依旧需要仔细思考和架构：所有的服务器必须使用相同的会话私钥，还需要一个额外的机制来周期性更新所有服务器上共享的私钥。
 
+## 信任链与证书颁发机构
