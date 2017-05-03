@@ -231,3 +231,7 @@ RSA 握手运转良好，但是它有一个重要的缺点：用于认证服务�
 
 图 4-6 信任 igvita.com 的证书链 (Google Chrome, v25)
 
+1. igvita.com 由 StartCom Class 1 Primary Intermediate Server签名
+2. StartCom Class 1 Primary Intermediate Server 证书由 StartCom Certification Authority机构签发
+3. StartCom Certification Authority是一个被认证的根证书签发机构。
+
