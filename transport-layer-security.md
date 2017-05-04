@@ -270,3 +270,10 @@ OCSP 机制消耗的带宽更少，可以实现实时验证。然而，OCSP 实�
 
 **note**
 > 实际数据如 Firefox 自动测量的结果显示出 OCSP 请求大约有 15% 超时，在成功的时候增加了大约 350ms 的 TLS 握手延迟，查看[hpbn.co/ocsp-performance](https://blog.mozilla.org/security/2015/11/23/improving-revocation-ocsp-must-staple-and-short-lived-certificates/)
+
+## OCSP Stapling
+正如上述原因，CRL 或者 OSCP 撤销机制都无法提供的安全和性能的保证。然而不要绝望，因为 RFC 6066 证书状态请求扩展提出的 OCSP Stapling 解决了大多数我们之前遇到的问题，它通过验证服务器在 TLS 握手中，将验证信息（“stapled”）作为信息的一部分发送给客户。
+
+1. 服务器周期性的或者并用 CA 响应的有时间戳的 OCSP 进行签名，而不是客户端发起 OCSP 请求。
+2. 服务器添加 OCSP 前面（staples）作为 TLS 握手的一部分，运行客户端验证证书和 CA 签名的 OCSP 撤销记录。
+
