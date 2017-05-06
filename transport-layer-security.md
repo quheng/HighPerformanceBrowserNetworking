@@ -328,5 +328,7 @@ OCSP 机制消耗的带宽更少，可以实现实时验证。然而，OCSP 实�
 >
 >Jacob Hoffman-Andrews (Twitter)
 
+为了在你自己的部署中获得最好的结果，确保部署了[TLS 会话重用](https://hpbn.co/transport-layer-security-tls/#tls-session-resumption)，测量并优化成功率。在每一次握手中减少公钥加密操作可以显著地减少 TLS 的计算开销和延迟。没有任何理由在你不需要做的事情上花费 CPU。
+
 
 
