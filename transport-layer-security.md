@@ -441,4 +441,11 @@ False Start 不改变 TLS 握手协议，而是只改变了可以发送数据的
 
 这就是说，确保你的服务器使用了最新的 TCP 协议栈和设置，优化并减少证书链的大小。发送更少的比特总是好的并值得优化的。
 
- 
+## 配置 OCSP Stapling
+每一个新的 TLS 连接都需要浏览器验证发送者的签名。然而，这里有一个更重要的步骤，不要忘了浏览器需要验证证书没有被撤销。
+
+为了验证证书状态，浏览器可以使用下这几种方法之一：[证书撤销列表 CRL](https://hpbn.co/transport-layer-security-tls/#certificate-revocation-list-crl), [在线证书状态协议 OCSP](https://hpbn.co/transport-layer-security-tls/#online-certificate-status-protocol-ocsp) 或者 [OCSP Stapling](https://hpbn.co/transport-layer-security-tls/#ocsp-stapling)。每一个方法都有它自身的限制，但是 OCSP Stapling 提供了最好的安全性和性能的保证，之前的章节讨论了细节。确定你的服务器在提供的证书链中包含了（staple）CA 的 OCSP 响应。 这样做运行浏览器在没有额外网络往返的情况想进行撤销检查并保证了性能。
+1. OCSP 响应大小在 400 到 4000 比特不等。这这个响应包含在证书链中会增加它的大小，时刻注意整个证书链的大小，不要让它超过新 TCP 连接的拥塞窗口大小。
+2. 当前的 OCSP Stapling 的实现只允许包括单个 OCSP 响应，这一外资浏览器可能会回退到其他验证机制上，如果它需要验证证书链中的其他证书的话-减少证书链的大小，未来 OSCP Multi-Stapling 应该会解决这个问题。
+
+当前大多数的服务器支持 OCSP stapling。检测相关的文档支持和配置指南。同样的，如果你决定使用 CND，检查他们的 TLS 协议栈支持，并配置使用 OCSP stapling。
