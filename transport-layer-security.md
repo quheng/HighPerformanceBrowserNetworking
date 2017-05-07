@@ -518,3 +518,120 @@ CSP 提供了一个高度可配置的机制来公职哪些资源可以被使用�
 11. 配置 CSP
 12. 开启 HTTP/2，查看 (HTTP/2)[https://hpbn.co/http2/]
 
+## 测试与验证
+最后，验证并测试你的配置，你可以使用在线服务，如 [Qualys SSL Server Test](https://www.ssllabs.com/ssltest/) 来扫描你的公共服务器，检查常见配置和安全漏洞。额外的，你应该熟悉 *openssl* 的命令行接口，这会帮助你检查整个握手并配置你的服务器。
+
+> $> openssl s_client -state -CAfile startssl.ca.crt -connect igvita.com:443
+>
+>  CONNECTED(00000003)
+>
+>  SSL_connect:before/connect initialization
+>
+>  SSL_connect:SSLv2/v3 write client hello A
+>
+>  SSL_connect:SSLv3 read server hello A
+>
+>  depth=2 /C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing
+>
+>          /CN=StartCom Certification Authority
+>
+>  verify return:1
+>
+>  depth=1 /C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing
+>
+>          /CN=StartCom Class 1 Primary Intermediate Server CA
+>
+>  verify return:1
+>
+>  depth=0 /description=ABjQuqt3nPv7ebEG/C=US
+>
+>          /CN=www.igvita.com/emailAddress=ilya@igvita.com
+>
+>  verify return:1
+>
+>  SSL_connect:SSLv3 read server certificate A
+>
+>  SSL_connect:SSLv3 read server done A 
+>
+>  SSL_connect:SSLv3 write client key exchange A
+>
+>  SSL_connect:SSLv3 write change cipher spec A
+>
+>  SSL_connect:SSLv3 write finished A
+>
+>  SSL_connect:SSLv3 flush data
+>
+>  SSL_connect:SSLv3 read finished A
+>
+>  ---
+>
+>  Certificate chain 
+>
+>   0 s:/description=ABjQuqt3nPv7ebEG/C=US
+>
+>       /CN=www.igvita.com/emailAddress=ilya@igvita.com
+>
+>     i:/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing
+>
+>       /CN=StartCom Class 1 Primary Intermediate Server CA
+>
+>   1 s:/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing
+>
+>       /CN=StartCom Class 1 Primary Intermediate Server CA
+>
+>     i:/C=IL/O=StartCom Ltd./OU=Secure Digital Certificate Signing
+>
+>       /CN=StartCom Certification Authority
+>
+>  ---
+>
+>  Server certificate
+>
+>  -----BEGIN CERTIFICATE-----
+>
+>  ... snip ...
+>
+>  ---
+>
+>  No client certificate CA names sent
+>
+>  ---
+>
+>  SSL handshake has read 3571 bytes and written 444 bytes 
+>
+>  ---
+>
+>  New, TLSv1/SSLv3, Cipher is RC4-SHA
+>
+>  Server public key is 2048 bit
+>
+>  Secure Renegotiation IS supported
+>
+>  Compression: NONE
+>
+>  Expansion: NONE
+>
+>  SSL-Session:
+>
+>      Protocol  : TLSv1
+>
+>      Cipher    : RC4-SHA
+>
+>      Session-ID: 269349C84A4702EFA7 ... 
+>
+>      Session-ID-ctx:
+>
+>      Master-Key: 1F5F5F33D50BE6228A ...
+>
+>      Key-Arg   : None
+>
+>      Start Time: 1354037095
+>
+>      Timeout   : 300 (sec)
+>
+>      Verify return code: 0 (ok)
+>  --->
+
+在上述例子中，我们连接到在默认 TLS 端口 443 连接到 [igvita](http://igvita.com/)，并且执行 TLS 握手。因为 *s_client* 没有假定已经知道了根证书，我们手动指定了根证书 StartSSL Certificate Authority 的位置，这是很重要的。你的浏览器已经有了 StartSSL 的根证书，因此可以去验证这个链条，但是 *s_client* 没有这样的架势。是在忽略根证书，你会在日志中看到一个错误。
+
+检查证书链会发现服务器发送了两个证书，这增加了 3,571 比特。并且我们可以看到 TLS 会话协商变量，选择的协议，加密算法和密钥，我们还可以看到服务器为当前会话其数量会话标识符，这可以在将来重用。
