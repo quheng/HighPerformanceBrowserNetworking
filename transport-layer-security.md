@@ -482,3 +482,22 @@ HTTP Public Key Pinning 允许站点发送一个 HTTP 头让浏览器记住（pi
 **note**
 HPKP 也提供了”只报告“模式，它不强制要求 ”pin“ 但是听过了错误报告。这可以使验证你部署的重要一步，可以检查违法规定的行为。
 
+## 升级网站内容到 HTTPS
+为了得到更好的安全和性能保证，确保站点使用了 HTTPS 获取所有的资源是关键之一。否则，我们会面临很多安全问题，更糟糕的是可能破坏站点：
+1. 混杂 ”动态“ 内容（例如脚本，和样式表由 HTTP 传递）可能会阻塞浏览器，并且可能破坏网站的功能。
+2. 混杂 ”静态“ 内容（例如图像，视频，音频等待通过 HTTP 传递），这会让攻击者观察用户行为，通过获取额外的内容和握手降低性能。
+
+检查你的内容并且升级你资源的连接，包含第三方的内容都使用了 HTTPS。[内容安全机制 CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) 对于验证 HTTPS 并启用需要的机制都提供了帮助。
+
+```
+Content-Security-Policy: upgrade-insecure-requests 1
+Content-Security-Policy-Report-Only: default-src https:;
+  report-uri https://example.com/reporting/endpoint 2
+```
+
+1. 告诉浏览器升级所有（自己的和第三方）的请求到 HTTPS。
+2. 告诉浏览器在指定地址报告非 HTTPS 冲突。
+
+**note**
+CSP 提供了一个高度可配置的机制来公职哪些资源可以被使用，如何以及从哪里获取资源。使用这些功能保护你的站点和用户。
+
