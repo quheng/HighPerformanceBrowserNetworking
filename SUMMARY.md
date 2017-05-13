@@ -6,10 +6,10 @@
 
 ## 网络 101
 
-* [Primer on Latency and Bandwidth](primer-on-latency-and-bandwidth.md)
-* [Building Blocks of TCP](building-blocks-of-tcp.md)
-* [Building Blocks of UDP](building-blocks-of-udp.md)
-* [Transport Layer Security](transport-layer-security.md)
+* [延迟和带宽](primer-on-latency-and-bandwidth.md)
+* [TCP 协议](building-blocks-of-tcp.md)
+* [UDP 协议](building-blocks-of-udp.md)
+* [安全传输层协议](transport-layer-security.md)
 
 ## 无线网络的性能
 
