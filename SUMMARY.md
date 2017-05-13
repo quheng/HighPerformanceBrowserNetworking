@@ -14,4 +14,5 @@
 ## 无线网络的性能
 
 * [无线网络简介](introduction-to-wireless-networks.md)
+* [WiFi](wifi.md)
 
