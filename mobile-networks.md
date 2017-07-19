@@ -106,6 +106,9 @@ Release|Date|Summary
 9|2009|Improvements to SAE and WiMAX interoperability
 10|2010|引入 4G 高级 LTE 架构
 
-表 7-4. 3GPP 发布历史
+表 7-4 3GPP 发布历史
 
 在遵循 3GPP 标准的情况下，HSDPA 和 HSUPA 版本的组合通常被称为高速分组接入网络（HSPA）。这两个版本的组合在现实世界中实现了低位的单位数 Mbit/s 吞吐量，这从早期的 3G 速度迈出了重要的一步。HSPA 网络通常被标记为3.5G。
+
+这之后的下一个升级是 HSPA+ (3.75G)。在实际的部署中，由于核心网络架构的简化，显著降低了网络延迟并达到了 Mbit/s 的传输速率。然而正如我们看到的那样，引入 HSPA+ 的第七个发布版本并不是科技发展的终点。实际上，HSPA+ 标准在不不断改进，现在正与 LTE 和 LTE-advanced 正面交锋。
+
