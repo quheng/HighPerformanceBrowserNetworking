@@ -394,3 +394,11 @@ DRX 到连接延迟 | < 50 ms | < 10 ms
 表 7-9. LTE 与 LTE-Advanced RRC 延迟
 
 
+## HSPA 与 HSPA+ (UMTS) RRC 状态机
+
+好消息是 LTE 与 LTE-Advanced 之前一代的 3GPP 网络具有非常相似的 RRC 状态机，也由无线电网络负责维护。坏消息是前几代的状态机有点复杂（图7-7），延迟更高。事实上，LTE 提供更好的性能正是由于简化了架构并改进了 RRC 状态转换的性能。
+
+![7-7](assets/2017-08-01-22-09-10.png)
+
+图 7-7. UMTS RRC 状态机: HSPA, HSPA+
+
