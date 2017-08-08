@@ -88,3 +88,101 @@ Server: Apache 0.84
 
 **note**
 >网络上几乎每个服务器今天都可以并仍然会使用 HTTP/1.0。除此之外，你应该知道的更多！每个请求都建立新的 TCP 连接对 HTTP/1.0 会造成重大的性能损失;请参阅[三次握手](https://hpbn.co/building-blocks-of-tcp/#three-way-handshake)与[缓慢启动](https://hpbn.co/building-blocks-of-tcp/#slow-start)。
+
+# HTTP/1.1: 互联网标准
+让 HTTP 称为官方 IETF 互联网标准的工作与 HTTP/1.0 的文档工作并行进行，这大约用了四年时间：1995 年至 1999 年。事实上，1997 年 1 月，大约是 HTTP/1.0 发布之后六个月，正式发布的RFC 2068 定义了第一个官方 HTTP/1.1 标准。两年半后，1999 年 6 月，标准纳入了一些改进和更新，并作为 RFC 2616 发布。
+
+HTTP/1.1 标准解决了早期版本中的许多模糊不清的地方，并引入了许多关键性能优化：keepalive 连接，分块编码传输，字节范围请求，附加缓存机制，传输编码和请求流水线。
+
+通过这些功能，我们现在可以查看任何现代 HTTP 浏览器和客户端执行的典型 HTTP/1.1 会话：
+
+```
+$> telnet website.org 80
+Connected to xxx.xxx.xxx.xxx
+
+GET /index.html HTTP/1.1 注1
+Host: website.org
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4)... (snip)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+Cookie: __qca=P0-800083390... (snip)
+
+HTTP/1.1 200 OK 注2
+Server: nginx/1.0.11
+Connection: keep-alive
+Content-Type: text/html; charset=utf-8
+Via: HTTP/1.1 GWA
+Date: Wed, 25 Jul 2012 20:23:35 GMT
+Expires: Wed, 25 Jul 2012 20:23:35 GMT
+Cache-Control: max-age=0, no-cache
+Transfer-Encoding: chunked
+
+100 注3
+<!doctype html>
+(snip)
+
+100
+(snip)
+
+0 注4
+
+GET /favicon.ico HTTP/1.1 注5
+Host: www.website.org
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4)... (snip)
+Accept: */*
+Referer: http://website.org/
+Connection: close 注6
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+Cookie: __qca=P0-800083390... (snip)
+
+HTTP/1.1 200 OK 注7
+Server: nginx/1.0.11
+Content-Type: image/x-icon
+Content-Length: 3638
+Connection: close
+Last-Modified: Thu, 19 Jul 2012 17:51:44 GMT
+Cache-Control: max-age=315360000
+Accept-Ranges: bytes
+Via: HTTP/1.1 GWA
+Date: Sat, 21 Jul 2012 21:35:22 GMT
+Expires: Thu, 31 Dec 2037 23:55:55 GMT
+Etag: W/PSA-GAu26oXbDi
+
+(icon data)
+(connection closed)
+```
+
+注1：请求 HTML 文件，其中包含编码，字符集和 Cookie 元数据
+
+注2：分块响应原始 HTML 请求
+
+注3：块中的八位字节数以 ASCII 十六进制数表示（256字节）
+
+注4：分块流响应结束
+
+注5：请求在同一个 TCP 连接上的图标文件
+
+注6：通知服务器连接不会被重用
+
+注7：图标响应，后跟连接关闭
+
+呃，那里有很多事情！第一个也是最明显的区别是，我们有两个对象请求，一个用于 HTML 页面，另一个用于图像，两者通过单个连接传递。这是连接 keepalive 的行为，这允许指向相同的主机的多个请求重用现有的 TCP 连接以提供更快的用户体验;请参阅[优化 TCP](https://hpbn.co/building-blocks-of-tcp/#optimizing-for-tcp)。
+
+要终止持久连接，请注意第二个客户端请求通过显式的 **Connection** 头向服务器发送明确的 **close** 令牌。类似地，一旦响应结果传输完毕，服务器可以通知客户端尝试关闭当前 TCP 连接。从技术上讲，任何一方都可以在任何时候终止 TCP 连接而无需这种信号，但客户端和服务器都应尽可能的提供它，以便在双方实现更好的连接重用策略。
+
+**note**
+>默认情况下，HTTP/1.1 改变了 HTTP 协议的语义用于 keepalive。这就是说，除非另有说明（通过 **Connection: close** 头），服务器应默认保持连接打开。
+>
+>但是，同样的功能也被反映到 HTTP / 1.0 是通过 **Connection：Keep-Alive** 头启用。因此，如果您使用 HTTP/1.1，在技术上您不需要 **Connection：Keep-Alive** 头，但是许多客户端选择提供它。
+
+此外，HTTP/1.1 协议添加了内容，编码，字符集，甚至语言协商，传输编码，缓存指令，客户端 cookie，以及可以在每个请求上协商的十几个其他功能。
+
+我们不会讲述每个 HTTP/1.1 功能的语义。可以有一本专门的书来讲这个主题并且已经完成了许多出色的书籍。相反，前面的例子很好地说明了 HTTP 的快速演进，以及每个客户端-服务器交换的错综复杂。那里有很多的事情！
+
+**note**
+>David Gourley 和 Brian Totty 编著的 O'Reilly 图书 *HTTP: The Definitive Guide* 是有关 HTTP 协议的所有内部工作的一个很好的参考。
+
