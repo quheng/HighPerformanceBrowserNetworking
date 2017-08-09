@@ -6,7 +6,7 @@
 
 ## 网络 101
 
-* [延迟和带宽](primer-on-latency-and-bandwidth.md)
+* [延迟和带宽基础](primer-on-latency-and-bandwidth.md)
 * [TCP 协议](building-blocks-of-tcp.md)
 * [UDP 协议](building-blocks-of-udp.md)
 * [安全传输层协议](transport-layer-security.md)
