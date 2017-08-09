@@ -20,3 +20,4 @@
 
 ## HTTP
 * [HTTP 简史](brief-history-of-HTTP.md)
+* [Web 性能入门](primer-on-Web-performance.md)
